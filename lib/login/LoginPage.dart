@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:the_app/widget/circular_progress_button.dart';
-import 'package:the_app/widget/text_form_field.dart';
+import 'package:the_app/widget/CircularProgressButton.dart';
+import 'package:the_app/widget/FextFormField.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -75,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _onClickLogin() async {
     print("Login: TODO");
+    Navigator.pushNamed(context, "/home");
   }
 
   String _validateLogin(String text){

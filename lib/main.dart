@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:the_app/login/login_page.dart';
+import 'package:the_app/login/LoginPage.dart';
+import 'package:the_app/utils/Routes.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       home: LoginPage(),
+      onGenerateRoute: (RouteSettings settings) => route(settings),
     );
   }
 }
