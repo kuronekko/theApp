@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 DecorationImage backgroundImage = new DecorationImage(
-  image: new ExactAssetImage('assets/login.jpg'),
+  image: new ExactAssetImage('assets/logoLogin.png'),
   fit: BoxFit.cover,
 );
 
-DecorationImage tick = new DecorationImage(
-  image: new ExactAssetImage('assets/tick.png'),
+DecorationImage logoLogin = new DecorationImage(
+  image: new ExactAssetImage('assets/logoLogin.png'),
   fit: BoxFit.cover,
 );

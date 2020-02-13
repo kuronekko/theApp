@@ -78,21 +78,14 @@ class StaggerAnimation extends StatelessWidget {
                         buttomZoomOut.value == 70 ? 60.0 : buttomZoomOut.value,
                     alignment: FractionalOffset.center,
                     decoration: new BoxDecoration(
-                      color: const Color.fromRGBO(247, 64, 106, 1.0),
+                      color: const Color.fromRGBO(20, 20, 20, 20).withOpacity(0),
+                      border: Border.all(color: Colors.white),
                       borderRadius: buttomZoomOut.value < 400
-                          ? new BorderRadius.all(const Radius.circular(30.0))
+                          ? new BorderRadius.all(const Radius.circular(40.0))
                           : new BorderRadius.all(const Radius.circular(0.0)),
                     ),
                     child: buttonSqueezeanimation.value > 75.0
-                        ? new Text(
-                            "Sign In",
-                            style: new TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w300,
-                              letterSpacing: 0.3,
-                            ),
-                          )
+                        ? Image(image: AssetImage("assets/googleSignIn.png"), height: 35.0)
                         : buttomZoomOut.value < 300.0
                             ? new CircularProgressIndicator(
                                 value: null,
@@ -108,7 +101,7 @@ class StaggerAnimation extends StatelessWidget {
                       shape: buttomZoomOut.value < 500
                           ? BoxShape.circle
                           : BoxShape.rectangle,
-                      color: const Color.fromRGBO(247, 64, 106, 1.0),
+                      color: const Color.fromRGBO(20, 20, 20, 20),
                     ),
                   ),
           )),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_app/login/LoginPage.dart';
-import 'package:the_app/login/index.dart';
+import 'package:the_app/pages/HomePage.dart';
 
 
   route(RouteSettings settings) {
@@ -10,10 +10,9 @@ import 'package:the_app/login/index.dart';
           builder: (_) => new LoginPage(),
           settings: settings,
         );
-
       case '/home':
         return new MyCustomRoute(
-          builder: (_) => new LoginScreen(),
+          builder: (_) => new HomePage(),
           settings: settings,
         );
     }

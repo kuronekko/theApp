@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './InputFields.dart';
 
-class FormContainer extends StatelessWidget {
+class FormContainerLogin extends StatelessWidget {
 
   final _focusSenha = FocusNode();
 
@@ -17,13 +17,13 @@ class FormContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               new InputFieldArea(
-                hint: "Username",
+                hint: "Usuário",
                 obscure: false,
                 icon: Icons.person_outline,
                 nextFocus: _focusSenha,
               ),
               new InputFieldArea(
-                hint: "Password",
+                hint: "Senha",
                 obscure: true,
                 icon: Icons.lock_outline,
                 focusNode: _focusSenha,
