@@ -32,6 +32,9 @@
 
 # Ignorar
 /android/app/*.json
+/ios/Runner/GoogleService-Info.plist
+/ios/Podfile
+/ios/Podfile.lock
 
 # Web related
 lib/generated_plugin_registrant.dart

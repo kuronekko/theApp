@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:the_app/login/LoginPage.dart';
+import 'package:the_app/pages/SplashScreenPage.dart';
 import 'package:the_app/utils/Routes.dart';
 
 void main() => runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: LoginPage(),
+      home: SplashScreenPage(),
       onGenerateRoute: (RouteSettings settings) => route(settings),
     );
   }

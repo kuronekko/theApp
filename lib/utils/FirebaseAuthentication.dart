@@ -20,8 +20,7 @@ class FirebaseService {
         idToken: googleAuth.idToken,
       );
 
-      final AuthResult authResult =
-          await _auth.signInWithCredential(credential);
+      final AuthResult authResult = await _auth.signInWithCredential(credential);
       final FirebaseUser user = authResult.user;
 
       print("Google User: ${user.displayName}");
@@ -41,14 +40,7 @@ class FirebaseService {
     }
   }
 
-  bool stillLoggedIn() {
-    if(FirebaseAuth.instance.currentUser() != null){
-      return true;
-    }
-     return false;
-  }
-
-  void signOutGoogle() async {
+  signOutGoogle() async {
     await _auth.signOut();
     await _googleSignIn.signOut();
 
