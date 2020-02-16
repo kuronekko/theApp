@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
       onWillPop: _onWillPop,
       child: Container(
           color: Colors.blue,
-          child: Image(image: AssetImage("assets/horo.gif"), height: 35.0)),
+          child: Image(image: AssetImage("assets/images/horo.gif"), height: 35.0)),
     );
   }
 

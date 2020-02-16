@@ -85,7 +85,7 @@ class StaggerAnimation extends StatelessWidget {
                           : new BorderRadius.all(const Radius.circular(0.0)),
                     ),
                     child: buttonSqueezeanimation.value > 75.0
-                        ? Image(image: AssetImage("assets/googleSignIn.png"), height: 35.0)
+                        ? Image(image: AssetImage("assets/images/googleSignIn.png"), height: 35.0)
                         : buttomZoomOut.value < 300.0
                             ? new CircularProgressIndicator(
                                 value: null,
