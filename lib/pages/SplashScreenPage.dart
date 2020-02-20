@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:the_app/utils/AssetsController.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -16,8 +17,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
   @override
   void initState(){
-
-    _playerController = VideoPlayerController.asset('assets/videos/HeartBeatSplash.mp4')
+    _playerController = splashVideo
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {

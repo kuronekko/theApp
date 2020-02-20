@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:the_app/login/LoginPage.dart';
 import 'package:the_app/pages/SplashScreenPage.dart';
 import 'package:the_app/utils/Routes.dart';
 
@@ -11,10 +10,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-      ),
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          scaffoldBackgroundColor: Color.fromRGBO(32, 33, 36, 1.0),
+          appBarTheme: AppBarTheme(),
+          primarySwatch: Colors.blue,
+          primaryColor: Color.fromRGBO(48, 49, 52, 1.0),
+          accentColor: Color(int.parse('0xff2399CC')),
+          iconTheme: IconThemeData(color: Colors.white)),
       home: SplashScreenPage(),
       onGenerateRoute: (RouteSettings settings) => route(settings),
     );

@@ -1,13 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:the_app/pages/HomePage.dart';
 import 'package:the_app/utils/FirebaseAuthentication.dart';
 import 'package:the_app/utils/ServiceResponse.dart';
-import 'package:the_app/utils/alert.dart';
 import 'package:the_app/widget/FormContainerLogin.dart';
 import 'package:the_app/widget/LoginLogo.dart';
-import 'styles.dart';
+import '../utils/AssetsController.dart';
 import 'LoginAnimation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/animation.dart';
@@ -81,10 +79,6 @@ class LoginPageState extends State<LoginPage>
         onWillPop: _onWillPop,
         child: new Scaffold(
           body: new Container(
-              decoration: new BoxDecoration(
-                image: backgroundImage,
-              ),
-              child: new Container(
                   decoration: new BoxDecoration(
                       gradient: new LinearGradient(
                         colors: <Color>[
@@ -96,7 +90,7 @@ class LoginPageState extends State<LoginPage>
                         end: const FractionalOffset(0.0, 1.5),
                       )),
                   child: _listView())),
-        )));
+        ));
   }
 
   ListView _listView() {
@@ -154,7 +148,7 @@ class LoginPageState extends State<LoginPage>
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image(image: AssetImage("assets/images/googleSignIn.png"), height: 35.0),
+              Image(image: googleLogo, height: 35.0),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Text(
