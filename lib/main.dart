@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:the_app/pages/SplashScreenPage.dart';
+import 'package:the_app/pages/splashScreen/SplashScreenPage.dart';
 import 'package:the_app/utils/Routes.dart';
 
 void main() => runApp(MyApp());

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_app/login/LoginPage.dart';
-import 'package:the_app/pages/HomePage.dart';
+import 'package:the_app/pages/login/LoginPage.dart';
+import 'package:the_app/pages/home/HomePage.dart';
 
 
   route(RouteSettings settings) {

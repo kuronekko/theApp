@@ -5,7 +5,7 @@ import 'package:the_app/utils/FirebaseAuthentication.dart';
 import 'package:the_app/utils/ServiceResponse.dart';
 import 'package:the_app/widget/FormContainerLogin.dart';
 import 'package:the_app/widget/LoginLogo.dart';
-import '../utils/AssetsController.dart';
+import '../../utils/AssetsController.dart';
 import 'LoginAnimation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/animation.dart';
