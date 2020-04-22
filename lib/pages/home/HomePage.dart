@@ -1,5 +1,10 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:the_app/pages/login/actions/Actions.dart';
+import 'package:the_app/pages/manga/MangaPage.dart';
+import 'package:the_app/redux/AppState.dart';
 import 'package:the_app/utils/FirebaseAuthentication.dart';
 
 class HomePage extends StatefulWidget {
@@ -7,7 +12,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin<HomePage>{
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin<HomePage>, AutomaticKeepAliveClientMixin<HomePage>{
 
   final service = FirebaseService();
 
@@ -120,54 +125,60 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   SizedBox _body() {
     return SizedBox.expand(
-      child: PageView(
-        controller: _pageTabController,
-        onPageChanged: (index) {
-          setState(() => _currentIndex = index);
-        },
-        children: <Widget>[
-          Container(color: Colors.blueGrey,),
-          Container(color: Colors.red,),
-          Container(color: Colors.green,),
-          Container(color: Colors.blue,),
-        ],
+      child: IgnorePointer(
+        ignoring: !isCollapsed,
+        child: PageView(
+          controller: _pageTabController,
+          onPageChanged: (index) {
+            setState(() => _currentIndex = index);
+          },
+          children: <Widget>[
+            MangaPage(),
+            Container(color: Colors.red,),
+            Container(color: Colors.green,),
+            Container(color: Colors.blue,),
+          ],
+        ),
       ),
     );
   }
 
-  BottomNavyBar _bottomNavyBar() {
-    return BottomNavyBar(
-      selectedIndex: _currentIndex,
-      onItemSelected: (index) {
-        setState(() => _currentIndex = index);
-        _pageTabController.jumpToPage(index);
-      },
-      items: <BottomNavyBarItem>[
-        BottomNavyBarItem(
-            title: Text('Item One'),
-            icon: Icon(Icons.home),
-            activeColor: Colors.white,
-            inactiveColor: Colors.grey
-        ),
-        BottomNavyBarItem(
-            title: Text('Item One'),
-            icon: Icon(Icons.apps),
-            activeColor: Colors.white,
-            inactiveColor: Colors.grey
-        ),
-        BottomNavyBarItem(
-            title: Text('Item One'),
-            icon: Icon(Icons.chat_bubble),
-            activeColor: Colors.white,
-            inactiveColor: Colors.grey
-        ),
-        BottomNavyBarItem(
-            title: Text('Item One'),
-            icon: Icon(Icons.settings),
-            activeColor: Colors.white,
-            inactiveColor: Colors.grey
-        ),
-      ],
+  _bottomNavyBar() {
+    return IgnorePointer(
+      ignoring: !isCollapsed,
+      child: BottomNavyBar(
+        selectedIndex: _currentIndex,
+        onItemSelected: (index) {
+          setState(() => _currentIndex = index);
+          _pageTabController.jumpToPage(index);
+        },
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+              title: Text('Item One'),
+              icon: Icon(Icons.home),
+              activeColor: Colors.white,
+              inactiveColor: Colors.grey
+          ),
+          BottomNavyBarItem(
+              title: Text('Item One'),
+              icon: Icon(Icons.apps),
+              activeColor: Colors.white,
+              inactiveColor: Colors.grey
+          ),
+          BottomNavyBarItem(
+              title: Text('Item One'),
+              icon: Icon(Icons.chat_bubble),
+              activeColor: Colors.white,
+              inactiveColor: Colors.grey
+          ),
+          BottomNavyBarItem(
+              title: Text('Item One'),
+              icon: Icon(Icons.settings),
+              activeColor: Colors.white,
+              inactiveColor: Colors.grey
+          ),
+        ],
+      ),
     );
   }
 
@@ -180,39 +191,47 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           child: FractionallySizedBox(
             widthFactor: 0.6,
             heightFactor: 0.8,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
               children: <Widget>[
-                Text(
-                  'Menu item 1',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                FutureBuilder<FirebaseUser>(
+                  future: FirebaseService().currentUser,
+                  builder: (BuildContext context, AsyncSnapshot snapshot){
+                    FirebaseUser user = snapshot.data;
+                    return user != null ? _userAccountsHeader(user) : Container();
+                  },
                 ),
-                SizedBox(height: 10),
-                Text(
-                  'Menu item 2',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                ListTile(
+                  leading: Icon(Icons.home),
+                  title: Text("Home"),
+                  onTap: (){},
                 ),
-                SizedBox(height: 10),
-                Text(
-                  'Menu item 3',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                ListTile(
+                  leading: Icon(Icons.ac_unit),
+                  title: Text("Animes"),
+                  onTap: (){},
                 ),
-                SizedBox(height: 10),
-                Text(
-                  'Menu item 4',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                ListTile(
+                  leading: Icon(Icons.library_books),
+                  title: Text("Mangas"),
+                  onTap: (){},
                 ),
-                SizedBox(height: 10),
-                InkWell(
-                  child: Text(
-                    'Sign Out',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-                  ),
+                ListTile(
+                  leading: Icon(Icons.movie),
+                  title: Text("Filmes"),
+                  onTap: (){},
+                ),
+                ListTile(
+                  leading: Icon(Icons.live_tv),
+                  title: Text("Séries"),
+                  onTap: (){},
+                ),
+                SizedBox(height: 100,),
+                ListTile(
+                  leading: Icon(Icons.exit_to_app),
+                  title: Text("Logout"),
+                  subtitle: Text("Deslogar do app...", ),
                   onTap: () => _signOutGoogle(),
                 ),
-                SizedBox(height: 10),
               ],
             ),
           ),
@@ -249,11 +268,27 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       ),
     ) ??
         false;
+  }//
+
+  UserAccountsDrawerHeader _userAccountsHeader(FirebaseUser user) {
+    return UserAccountsDrawerHeader(
+      margin: EdgeInsets.only(bottom: 15.0, right: 13),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15.0), color: Colors.blueAccent),
+      accountName: Text(user.displayName),
+      accountEmail: Text(user.email, style: TextStyle(fontSize: 10),),
+      currentAccountPicture: CircleAvatar(
+        backgroundImage: NetworkImage(user.photoUrl,),
+      ),
+    );
   }
 
   void _signOutGoogle() async{
     service.signOutGoogle();
+    StoreProvider.of<AppState>(context).dispatch(AnimationStatusLoginChange(0));
     Navigator.pushReplacementNamed(context, "/login");
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
 }
