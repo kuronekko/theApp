@@ -12,5 +12,9 @@ DecorationImage logoLogin = new DecorationImage(
 );
 
 ImageProvider googleLogo = AssetImage("assets/images/googleSignIn.png");
+ImageProvider animeIcon = AssetImage("assets/images/animeIcon.png");
+ImageProvider arieIcon = AssetImage("assets/images/arieIcon.png");
+ImageProvider mangaPage = AssetImage("assets/images/mangaPage.jpg");
+
 
 VideoPlayerController splashVideo = VideoPlayerController.asset('assets/videos/HeartBeatSplash.mp4');

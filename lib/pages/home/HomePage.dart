@@ -2,9 +2,11 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:the_app/api/AnimeService.dart';
 import 'package:the_app/pages/login/actions/Actions.dart';
 import 'package:the_app/pages/manga/MangaPage.dart';
 import 'package:the_app/redux/AppState.dart';
+import 'package:the_app/utils/AssetsController.dart';
 import 'package:the_app/utils/FirebaseAuthentication.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin<HomePage>, AutomaticKeepAliveClientMixin<HomePage>{
 
   final service = FirebaseService();
+  final animeService = AnimeService();
 
   //Page e bottom nav
   int _currentIndex = 0;
@@ -103,6 +106,41 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                 isCollapsed = !isCollapsed;
                               });
                             }),
+                        actions: <Widget>[
+//                          IconButton(
+//                              icon: Icon(Icons.add, size: 35,),
+//                            onPressed: (){
+//
+//                            },
+//                          )
+                          PopupMenuButton<String>(
+                            onSelected: (String value) => _onClickPopupMenu(value),
+                            icon: Icon(Icons.add, size: 30,),
+                            itemBuilder: (context) {
+                              return [
+                                PopupMenuItem(
+                                  value: "Anime",
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: <Widget>[
+                                    Image(image: animeIcon, width: 40, height: 40,),
+                                    Text("Novo Anime")
+                                  ]),
+                                ),
+                                PopupMenuItem(
+                                  value: "Manga",
+                                  child: Text("Novo Manga"),
+                                ),
+                                PopupMenuItem(
+                                  value: "Filme",
+                                  child: Text("Novo Filme"),
+                                ),
+                                PopupMenuItem(
+                                  value: "Serie",
+                                  child: Text("Nova Série"),
+                                ),
+                              ];
+                            },
+                          )
+                        ],
                       ),
                       body: _body(),
                       bottomNavigationBar: _bottomNavyBar(),
@@ -121,6 +159,24 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           )
       ),
     );
+  }
+
+  _onClickPopupMenu(String value) {
+    switch (value) {
+      case "Anime":
+        print("Editar");
+        //push(context, CarroFormPage(carro: carro));
+        break;
+      case "Manga":
+        //deletar();
+        break;
+      case "Filme":
+        print("Share");
+        break;
+      case "Serie":
+        print("Share");
+        break;
+    }
   }
 
   SizedBox _body() {
@@ -206,14 +262,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   onTap: (){},
                 ),
                 ListTile(
-                  leading: Icon(Icons.ac_unit),
+                  leading: Image(image: arieIcon, width: 40, height: 40,),
                   title: Text("Animes"),
                   onTap: (){},
                 ),
                 ListTile(
-                  leading: Icon(Icons.library_books),
+                  leading: Image(image: mangaPage, width: 40, height: 40,),
                   title: Text("Mangas"),
-                  onTap: (){},
+                  onTap: (){animeService.searchAnime("Konosuba", 1,1);},
                 ),
                 ListTile(
                   leading: Icon(Icons.movie),
